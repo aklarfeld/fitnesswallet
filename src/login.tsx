@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 import generatePass from './generate';
-import { clubs, Club } from './data/clubs';
+import { clubs, Club } from './clubs';
 
 const { useState } = React;
 

@@ -1,7 +1,7 @@
 import { Template } from '@walletpass/pass-js';
 import { ApplePass } from '@walletpass/pass-js/dist/interfaces';
 import { readFileSync } from 'fs'
-import { clubs, Club } from './data/clubs';
+import { clubs, Club } from './clubs';
 
 const generatePass = async ({ serialNumber, club, fullName }: { serialNumber: string, club: Club, fullName: string }): Promise<string> => {
   const passJson: Partial<ApplePass> = {
