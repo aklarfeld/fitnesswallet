@@ -19,7 +19,8 @@ export default function Login() {
     e.preventDefault();
     const { data } = await fetchFitnessSFAuth({ email, password });
     console.log({ data })
-    const url = await generatePass({ serialNumber: data.user.scanCode, fullName: data.user.name, locationData: { latitude: 0, longitude: 0 } })
+    const url = await generatePass({ serialNumber: data.user.scanCode, fullName: data.user.name, locationData: { latitude: 37.7637395,
+      longitude: -122.4334293 }} )
     setDownloadUrl(url);
   };
 

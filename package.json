@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build --public-url '.' index.html"
+    "build": "parcel build --public-url '.' index.html",
+    "deploy": "rm -rf dist && yarn build && echo 'fitnesssf.app' > dist/CNAME && gh-pages --no-history -d dist"
   },
   "alias": {
     "http2": "./src/shims/http2",
@@ -27,6 +28,7 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "events": "^3.3.0",
+    "gh-pages": "^4.0.0",
     "os-browserify": "^0.3.0",
     "parcel": "^2.4.1",
     "path-browserify": "^1.0.1",
