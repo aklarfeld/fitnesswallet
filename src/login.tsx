@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 import generatePass from './generate';
 import { clubs, Club } from './data/clubs';
@@ -17,15 +18,29 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [downloadUrl, setDownloadUrl] = useState('')
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const onClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     setLoading(true);
     e.preventDefault();
-    const { data } = await fetchFitnessSFAuth({ email, password });
-    const club = clubs.find(club => data.user.favoriteLocation === club.locationId) as Club;
-    console.log({ club, user: data.user })
-    const url = await generatePass({ serialNumber: data.user.scanCode, fullName: data.user.name, club })
-    setDownloadUrl(url);
+    let response;
+    try {
+      response = await axios.post('https://fsf-api-production.herokuapp.com/auth', {
+        email,
+        password,
+      });
+    } catch(e) {
+      console.error(e);
+    }
+
+    if(!response) {
+      setError('Error fetching credentials.')
+    } else {
+      const user = response.data.user;
+      const club = clubs.find(club => user.favoriteLocation === club.locationId) as Club;
+      const url = await generatePass({ serialNumber: user.scanCode, fullName: user.name, club })
+      setDownloadUrl(url);
+    }
     setLoading(false);
   };
 
@@ -37,6 +52,7 @@ export default function Login() {
   return (
     <div className="content">
       <Form>
+        <Alert show={!!error}variant='danger' dismissible onClose={() => setError('')}>{error}</Alert>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" onChange={onChange(setEmail)} />
