@@ -1,35 +1,15 @@
 import { Template } from '@walletpass/pass-js';
 import { ApplePass } from '@walletpass/pass-js/dist/interfaces';
 import { readFileSync } from 'fs'
+import { clubs, Club } from './data/clubs';
 
-export type LocationData = {
-  latitude: number
-  longitude: number
-}
-
-const getLocationRing = ({ locationData, radius = 0.022 }: { locationData: LocationData, radius?: number }): LocationData[] => {
-  let locationRing = []
-  if (locationData) {
-      let numPoints = 5
-      for (let i = 0; i < numPoints; i++) {
-          const rad = ((Math.PI * 2) / numPoints) * i
-          locationRing.push({
-              longitude: locationData.longitude + Math.cos(rad) * radius,
-              latitude: locationData.latitude + Math.sin(rad) * radius,
-          })
-      }
-  }
-  return locationRing;
-}
-
-const generatePass = async ({ serialNumber, locationData, fullName }: { serialNumber: string, locationData: LocationData, fullName: string }): Promise<string> => {
-  console.log({ serialNumber, locationData })
+const generatePass = async ({ serialNumber, club, fullName }: { serialNumber: string, club: Club, fullName: string }): Promise<string> => {
   const passJson: Partial<ApplePass> = {
     formatVersion: 1,
     passTypeIdentifier: process.env.PASS_TYPE_ID,
     serialNumber,
     teamIdentifier: process.env.TEAM_ID,
-    locations: getLocationRing({ locationData }),
+    locations: clubs.map(club => ({ latitude: club.latLong[0], longitude: club.latLong[1], relevantText: `You're near FitnessSF: ${club.name}`})),
     barcodes: [
         {
             message: serialNumber,
@@ -39,18 +19,22 @@ const generatePass = async ({ serialNumber, locationData, fullName }: { serialNu
     ],
     organizationName: 'Fitness SF',
     description: 'Fitness SF',
-    foregroundColor: 'rgb(0, 0, 0)',
-    backgroundColor: 'rgb(254, 127, 72)',
+    foregroundColor: 'rgb(0,0,0)',
+    backgroundColor: 'rgb(254,79,2)',
     logoText: 'Fitness SF',
     eventTicket: {
-        primaryFields: [{
+      secondaryFields: [{
           key: 'name',
           label: 'Name',
           value: fullName,
+        }, {
+          key: 'clubName',
+          label: 'Primary Gym',
+          value: club.name
         }],
         auxiliaryFields: [],
         backFields: [],
-        secondaryFields: []
+        primaryFields: []
     },
   };
   const template = new Template('eventTicket', passJson, undefined, undefined)

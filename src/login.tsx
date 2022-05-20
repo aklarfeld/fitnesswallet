@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import generatePass from './generate';
+import { clubs, Club } from './data/clubs';
+
 const { useState } = React;
 
 const fetchFitnessSFAuth = async ({ email, password }: { email: string, password: string }) => axios.post('https://fsf-api-production.herokuapp.com/auth', {
@@ -14,14 +16,17 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [downloadUrl, setDownloadUrl] = useState('')
+  const [loading, setLoading] = useState(false);
 
   const onClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    setLoading(true);
     e.preventDefault();
     const { data } = await fetchFitnessSFAuth({ email, password });
-    console.log({ data })
-    const url = await generatePass({ serialNumber: data.user.scanCode, fullName: data.user.name, locationData: { latitude: 37.7637395,
-      longitude: -122.4334293 }} )
+    const club = clubs.find(club => data.user.favoriteLocation === club.locationId) as Club;
+    console.log({ club, user: data.user })
+    const url = await generatePass({ serialNumber: data.user.scanCode, fullName: data.user.name, club })
     setDownloadUrl(url);
+    setLoading(false);
   };
 
   const onChange = (setValue: (arg:string) => void) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,10 +49,11 @@ export default function Login() {
             Your credentials won&apos;t get saved anywhere on our servers.
           </Form.Text>
         </Form.Group>
-        {!downloadUrl && <Button variant="primary" className="center" type="submit" onClick={onClick}>
-          Submit
+        {!downloadUrl && <Button disabled={loading} variant="primary" className="center" type="submit" onClick={onClick}>
+          Generate Pass
         </Button>}
-        {downloadUrl && (<Button variant="secondary" className="center" type="submit" href={downloadUrl}>
+        {/* @ts-expect-error */}
+        {downloadUrl && (<Button disabled={loading} download="fitnesssf.pkpass" variant="secondary" className="center" type="submit" href={downloadUrl}>
           Download Pass
         </Button>)}
       </Form>
