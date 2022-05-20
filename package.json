@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "ts": "tsc",
     "start": "parcel index.html",
     "build": "parcel build --public-url '.' index.html",
     "deploy": "rm -rf dist && yarn build && echo 'fitnesssf.app' > dist/CNAME && gh-pages --no-history -d dist"
