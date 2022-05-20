@@ -1,0 +1,201 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Avenir, sans-serif;
+    margin: 0;
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    h1.thing {
+        text-align: center;
+        width: 30%;
+        flex: 1;
+    }
+}
+
+.location-trigger {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+.footer {
+    font-size: small;
+    color: hsl(234deg 12% 57%);
+    background: #FFE3D7
+}
+
+.footer-inner {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.appleWallet {
+    background: black;
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+    user-select: none;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    &:hover {
+        filter: brightness(1.2);
+    }
+
+    .appleWalletInner {
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.add-pass {
+    text-decoration: none;
+}
+
+.hidden {
+    position: absolute;
+    left: -200px;
+    top: -200px;
+    opacity: 0;
+}
+
+.fadein {
+    animation: fadeIn 0.5s linear;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: black;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+.share-buttons {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    background: #f8f9fb;
+    padding: 10px 20px;
+}
+
+.social-sharing__link {
+    display: inline-flex;
+    padding: 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #FE7F48;
+    align-items: center;
+    &:hover {
+        background: hsl(233deg 28% 93%);   
+    }
+    svg {
+        height: 20px;
+        margin-right: 5px;
+        vertical-align: middle;
+        opacity: 0.7;
+    }
+    path {
+        fill: #FE4F02;
+    }
+    a {
+        display: inline-block;
+        margin-right: 15px;
+        font-size: 80%;
+    }
+    .social-sharing {
+        margin-top: 20px;
+    }
+    .visually-hidden {
+        position: absolute !important;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+    }
+}
