@@ -12,7 +12,7 @@ function ShareButtons() {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="//www.facebook.com/sharer.php?u=https://fitnesssf.app/"
+        href="//www.facebook.com/sharer.php?u=https://fitnesswallet.app/"
         className="social-sharing__link"
         title="Share on Facebook"
       >
@@ -23,7 +23,7 @@ function ShareButtons() {
       {' '}
       <a
         target="_blank"
-        href="//twitter.com/share?text=Check out this app for adding your Fitness SF Membership to Apple Wallet&url=https://fsfwallet.app/"
+        href="//twitter.com/share?text=Check out this app for adding your Fitness SF Membership to Apple Wallet&url=https://fitnesswallet.app/"
         className="social-sharing__link"
         title="Tweet on Twitter"
         rel="noopener noreferrer"
