@@ -69,7 +69,7 @@ export default function Login() {
           Generate Pass
         </Button>}
         {/* @ts-expect-error */}
-        {downloadUrl && (<Button disabled={loading} download="fitnesssf.pkpass" variant="success" className="center" type="submit" href={downloadUrl}>
+        {downloadUrl && (<Button disabled={loading} target="_system" download="fitnesssf.pkpass" variant="success" className="center" type="submit" href={downloadUrl}>
           Download Pass!
         </Button>)}
       </Form>

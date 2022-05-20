@@ -38,7 +38,6 @@ const generatePass = async ({ serialNumber, club, fullName }: { serialNumber: st
     },
   };
   const template = new Template('eventTicket', passJson, undefined, undefined)
-  console.log({ env: process.env.CERTIFICATE_TEXT, window })
   template.setCertificate(process.env.CERTIFICATE_TEXT || '', process.env.CERTIFICATE_PASS)
   
   const image: HTMLImageElement = await new Promise(resolve => {
@@ -84,13 +83,11 @@ const generatePass = async ({ serialNumber, club, fullName }: { serialNumber: st
   const blob = new Blob([(await pass.asBuffer()).buffer], {
     type: 'application/vnd.apple.pkpass',
   })
-  console.log({ pass })
   const url: string = await new Promise(resolve => {
     const fr = new FileReader()
     fr.onload = e => resolve(fr.result as string)
     fr.readAsDataURL(blob)
   });
-  console.log({ url })
   return url;
 }
 
