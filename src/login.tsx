@@ -66,11 +66,11 @@ export default function Login() {
           </Form.Text>
         </Form.Group>
         {!downloadUrl && <Button disabled={loading} variant="primary" className="center" type="submit" onClick={onClick}>
-          Generate Apple Wallet Pass
+          Generate Pass
         </Button>}
         {/* @ts-expect-error */}
         {downloadUrl && (<Button disabled={loading} download="fitnesssf.pkpass" variant="success" className="center" type="submit" href={downloadUrl}>
-          Download Apple Wallet Pass!
+          Download Pass!
         </Button>)}
       </Form>
     </div>
