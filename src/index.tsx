@@ -12,7 +12,7 @@ function ShareButtons() {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="//www.facebook.com/sharer.php?u=https://fitnesswallet.app/"
+        href="//www.facebook.com/sharer.php?u=https://www.fitnesswallet.app/"
         className="social-sharing__link"
         title="Share on Facebook"
       >
@@ -23,7 +23,7 @@ function ShareButtons() {
       {' '}
       <a
         target="_blank"
-        href="//twitter.com/share?text=Check out this app for adding your Fitness SF Membership to Apple Wallet&url=https://fitnesswallet.app/"
+        href="//twitter.com/share?text=Check out this app for adding your Fitness SF Membership to Apple Wallet&url=https://www.fitnesswallet.app/"
         className="social-sharing__link"
         title="Tweet on Twitter"
         rel="noopener noreferrer"
@@ -50,6 +50,9 @@ function Layout({ children }: { children: React.ReactNode }) {
           </div>
           {children}
         </div>
+      </div>
+      <div className="content">
+        <h4>Enter your FitnessSF credentials below</h4>
       </div>
       <Login />
       <ShareButtons />
