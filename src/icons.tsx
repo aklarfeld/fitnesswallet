@@ -34,8 +34,8 @@ export function QRIcon(props: React.SVGProps<SVGSVGElement>) {
       width={16}
       height={16}
       viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlns="//www.w3.org/2000/svg"
+      xmlnsXlink="//www.w3.org/1999/xlink"
       {...props}
     >
       <title>QR coder</title>
@@ -52,8 +52,8 @@ export function QRIcon(props: React.SVGProps<SVGSVGElement>) {
 export function WalletIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlns="//www.w3.org/2000/svg"
+      xmlnsXlink="//www.w3.org/1999/xlink"
       width={40}
       height={34.016}
       viewBox="0 0 40 34.016"
