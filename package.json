@@ -6,7 +6,7 @@
     "ts": "tsc",
     "start": "parcel index.html",
     "build": "parcel build --public-url '.' index.html",
-    "deploy": "rm -rf .parcel-cache && rm -rf dist && yarn build && echo 'fitnesswallet.app' > dist/CNAME && gh-pages --no-history -d dist",
+    "deploy": "rm -rf .parcel-cache && rm -rf dist && yarn build && gh-pages --no-history -d dist",
     "clean": "rm -rf dist && rm -rf .parcel-cache"
   },
   "alias": {
