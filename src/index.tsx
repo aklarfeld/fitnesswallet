@@ -23,7 +23,7 @@ function ShareButtons() {
       {' '}
       <a
         target="_blank"
-        href="//twitter.com/share?text=Check out this app for adding your Fitness SF Membership to Apple Wallet&url=https://www.fitnesswallet.app/"
+        href="//twitter.com/share?text=Check out this app for adding your Fitness SF Membership to your mobile Wallet&url=https://www.fitnesswallet.app/"
         className="social-sharing__link"
         title="Tweet on Twitter"
         rel="noopener noreferrer"
@@ -46,13 +46,13 @@ function Layout({ children }: { children: React.ReactNode }) {
           <div className="header">
             <h1 className="thing">Fitness SF Membership</h1>
             <h1>&rarr;</h1>
-            <h1 className="thing">Apple Wallet</h1>
+            <h1 className="thing">Mobile Wallet</h1>
           </div>
           {children}
         </div>
       </div>
       <div className="content">
-        <h4>Enter your FitnessSF credentials below</h4>
+        <h4>Enter your FitnessSF credentials below to generate a mobile pass</h4>
       </div>
       <Login />
       <ShareButtons />
