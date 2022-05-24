@@ -52,7 +52,8 @@ function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       <div className="content">
-        <h4>Enter your FitnessSF credentials below to generate a mobile pass</h4>
+        {/* @ts-expect-error */}
+        <h4 style="text-align: center;">Enter your FitnessSF credentials below to generate a mobile pass</h4>
       </div>
       <Login />
       <ShareButtons />
