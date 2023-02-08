@@ -33,7 +33,7 @@ export default function Login() {
       setError('Error fetching credentials.')
     } else {
       const user = response.data.user;
-      const club = clubs.find(club => user.favoriteLocation === club.locationId) as Club;
+      const club = clubs.find(club => user.favoriteLocationName === club.name) as Club;
       const url = await generatePass({ serialNumber: user.scanCode, fullName: user.firstName, club })
       setDownloadUrl(url);
     }
