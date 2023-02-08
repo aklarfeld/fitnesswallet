@@ -8,11 +8,6 @@ import { clubs, Club } from './clubs';
 
 const { useState } = React;
 
-const fetchFitnessSFAuth = async ({ email, password }: { email: string, password: string }) => axios.post('https://fsf-api-production.herokuapp.com/auth', {
-  email,
-  password,
-});
-
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,6 +24,7 @@ export default function Login() {
         email,
         password,
       });
+      console.log({ response })
     } catch(e) {
       console.error(e);
     }
@@ -38,7 +34,7 @@ export default function Login() {
     } else {
       const user = response.data.user;
       const club = clubs.find(club => user.favoriteLocation === club.locationId) as Club;
-      const url = await generatePass({ serialNumber: user.scanCode, fullName: user.name, club })
+      const url = await generatePass({ serialNumber: user.scanCode, fullName: user.firstName, club })
       setDownloadUrl(url);
     }
     setLoading(false);
